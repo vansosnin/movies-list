@@ -12,7 +12,7 @@ const config = {
     storageBucket: `${PROJECT_ID}.appspot.com`,
 };
 
-export default class Firebase {
+export class Firebase {
     constructor() {
         if (instance) {
             return instance;
