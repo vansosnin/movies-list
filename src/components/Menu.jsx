@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import { Auth } from '../firebase/auth';
 
-export class Menu extends PureComponent {
+class Menu extends PureComponent {
     _handleLogIn = () => {
         Auth.instance().signIn();
     };
@@ -11,7 +13,8 @@ export class Menu extends PureComponent {
     };
 
     render() {
-        const isLoggedIn = !!Auth.instance().currentUser;
+        const { store } = this.props;
+        const isLoggedIn = store.currentUser.isLoggedIn;
 
         return (
             <nav className="navbar navbar-dark bg-dark">
@@ -38,3 +41,11 @@ export class Menu extends PureComponent {
         );
     }
 }
+
+Menu.propTypes = {
+    store: PropTypes.shape({
+        currentUser: PropTypes.object,
+    }),
+};
+
+export default observer(Menu);

@@ -1,4 +1,5 @@
 import { Firebase } from './firebase';
+import Store from '../models/store';
 
 let instance = null;
 
@@ -42,6 +43,8 @@ export class Auth {
             } else {
                 this._user = null;
             }
+
+            Store.currentUser.set(this._user);
         });
     }
 }
