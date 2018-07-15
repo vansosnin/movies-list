@@ -1,11 +1,11 @@
 import firebase from 'firebase';
-import config from '../config.json';
+import configJson from '../config.json';
 
 let instance = null;
 
-const PROJECT_ID = config['firebase-project-id'];
+const PROJECT_ID = configJson['firebase-project-id'];
 const config = {
-    apiKey: config['firebase-api-key'],
+    apiKey: configJson['firebase-api-key'],
     projectId: PROJECT_ID,
     databaseURL: `https://${PROJECT_ID}.firebaseio.com/`,
     authDomain: `${PROJECT_ID}.firebaseapp.com`,
