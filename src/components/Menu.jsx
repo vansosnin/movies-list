@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Auth } from '../firebase/auth';
 
-class Menu extends PureComponent {
+class Menu extends Component {
     _handleLogIn = () => {
         Auth.instance().signIn();
     };

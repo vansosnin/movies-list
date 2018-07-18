@@ -37,7 +37,7 @@ export class Auth {
     }
 
     _attachEventListeners() {
-        this._auth.onAuthStateChanged((user) => {
+        this._auth.onIdTokenChanged((user) => {
             if (user) {
                 this._user = user;
             } else {
@@ -48,3 +48,5 @@ export class Auth {
         });
     }
 }
+
+Auth.instance();

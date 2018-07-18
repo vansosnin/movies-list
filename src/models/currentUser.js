@@ -12,8 +12,12 @@ export const CurrentUser = types
     }))
     .actions((self) => ({
         set(user) {
-            self.username = user.displayName;
-            self.email = user.email;
-            console.log('set!');
+            if (user) {
+                self.username = user.displayName;
+                self.email = user.email;
+            } else {
+                self.username = null;
+                self.email = null;
+            }
         },
     }));
