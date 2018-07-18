@@ -8,7 +8,7 @@ class App extends PureComponent {
         const { store } = this.props;
         return (
             <Fragment>
-                <Menu store={store} />
+                <Menu currentUser={store.currentUser} />
             </Fragment>
         );
     }

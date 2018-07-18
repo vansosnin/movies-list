@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Auth } from '../firebase/auth';
@@ -13,11 +13,11 @@ class Menu extends Component {
     };
 
     render() {
-        const { store } = this.props;
-        const isLoggedIn = store.currentUser.isLoggedIn;
+        const { currentUser } = this.props;
+        const { isLoggedIn, username } = currentUser;
 
         return (
-            <nav className="navbar navbar-dark bg-dark">
+            <nav className="navbar navbar-dark bg-dark justify-content-end">
                 <div className="nav-item">
                     {!isLoggedIn ? (
                         <button
@@ -28,13 +28,21 @@ class Menu extends Component {
                             Войти
                         </button>
                     ) : (
-                        <button
-                            type="button"
-                            className="btn btn-light"
-                            onClick={this._handleLogOut}
-                        >
-                            Развойти
-                        </button>
+                        <Fragment>
+                            <span
+                                className="navbar-text"
+                                style={{ marginRight: '10px' }}
+                            >
+                                Привет, {username}
+                            </span>
+                            <button
+                                type="button"
+                                className="btn btn-light"
+                                onClick={this._handleLogOut}
+                            >
+                                Развойти
+                            </button>
+                        </Fragment>
                     )}
                 </div>
             </nav>
@@ -43,9 +51,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-    store: PropTypes.shape({
-        currentUser: PropTypes.object,
-    }),
+    currentUser: PropTypes.object,
 };
 
 export default observer(Menu);
