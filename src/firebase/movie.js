@@ -1,5 +1,4 @@
 import { Firebase } from './firebase';
-import { Auth } from './auth';
 
 const MOVIES_REF = 'movies';
 
@@ -7,7 +6,6 @@ export class Movie {
     constructor() {
         this._firebase = Firebase.instance();
         this._ref = this._firebase.db.ref(MOVIES_REF);
-        this._auth = Auth.instance();
     }
 
     getList() {
