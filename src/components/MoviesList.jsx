@@ -13,7 +13,7 @@ class MoviesList extends Component {
         }
 
         return (
-            <main className="container">
+            <main className="container py-2">
                 {movies.map((movie) => (
                     <Movie key={movie.movieId} {...movie} />
                 ))}
