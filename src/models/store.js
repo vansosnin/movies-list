@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree';
+import { types, flow, onAction } from 'mobx-state-tree';
 import { CurrentUser } from './currentUser';
 import { Movie } from './movie';
 import { Movie as MovieFirebase } from '../firebase/movie';
@@ -10,6 +10,26 @@ const Store = types
         movies: types.array(Movie),
     })
     .actions((self) => ({
+        fetchMoviesList: flow(function*() {
+            const movieModel = new MovieFirebase();
+            const moviesRef = yield movieModel.getList();
+            let movies = Object.values(moviesRef.val());
+
+            if (self.currentUser) {
+                const checkedMoviesModel = new CheckedMovie();
+                const checkedMoviesRef = yield checkedMoviesModel.getCheckedMovies(
+                    self.currentUser.uid
+                );
+                const checkedMovies = checkedMoviesRef.val().checkedMovies;
+
+                movies = movies.map((movie) => ({
+                    ...movie,
+                    isChecked: checkedMovies.includes(movie.movieId),
+                }));
+            }
+
+            return self.setMoviesList(movies);
+        }),
         setMoviesList(moviesList) {
             self.movies = moviesList.map((movie) =>
                 Movie.create({
@@ -33,9 +53,14 @@ const getStore = () => {
 
 const store = getStore();
 
-const movieModel = new MovieFirebase();
-const movies = movieModel
-    .getList()
-    .then((list) => store.setMoviesList(Object.values(list.val())));
+onAction(store, (call) => {
+    const { name, path } = call;
+
+    if (path === '/currentUser' && name === 'set') {
+        store.fetchMoviesList();
+    }
+});
+
+store.fetchMoviesList();
 
 export default store;

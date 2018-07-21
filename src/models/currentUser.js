@@ -14,7 +14,7 @@ export const CurrentUser = types
     .actions((self) => ({
         set(user) {
             if (user) {
-                self.uid = user.displayName;
+                self.uid = user.uid;
                 self.username = user.displayName;
                 self.email = user.email;
             } else {

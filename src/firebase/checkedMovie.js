@@ -10,6 +10,10 @@ export class CheckedMovie {
         this._auth = Auth.instance();
     }
 
+    getCheckedMovies(uid) {
+        return this._ref.child(uid).once('value');
+    }
+
     createList(uid, movies) {
         this._ref
             .child(uid)
