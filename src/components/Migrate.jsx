@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { Movie } from '../firebase/movie';
 import { Auth } from '../firebase/auth';
 import { CheckedMovie } from '../firebase/checkedMovie';
-import config from '../config.json';
+import config from '../config_trello.json';
 
 export class Migrate extends PureComponent {
     _migrate = () => {

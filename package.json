@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "classnames": "2.2.6",
         "firebase": "5.2.0",
         "mobx": "5.0.3",
         "mobx-react": "5.2.3",

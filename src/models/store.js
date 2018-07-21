@@ -8,6 +8,7 @@ const Store = types
     .model({
         currentUser: CurrentUser,
         movies: types.array(Movie),
+        hideChecked: types.boolean,
     })
     .actions((self) => ({
         fetchMoviesList: flow(function*() {
@@ -37,6 +38,9 @@ const Store = types
                 })
             );
         },
+        toggleHideChecked(isHidden) {
+            self.hideChecked = isHidden;
+        },
     }));
 
 let instance;
@@ -45,6 +49,7 @@ const getStore = () => {
         instance = Store.create({
             currentUser: {},
             movies: [],
+            hideChecked: true,
         });
     }
 
