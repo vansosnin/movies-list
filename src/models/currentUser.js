@@ -18,9 +18,9 @@ export const CurrentUser = types
                 self.username = user.displayName;
                 self.email = user.email;
             } else {
-                self.uid = null;
-                self.username = null;
-                self.email = null;
+                self.uid = '';
+                self.username = '';
+                self.email = '';
             }
         },
     }));

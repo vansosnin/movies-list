@@ -10,13 +10,8 @@ class Movie extends PureComponent {
     };
 
     render() {
-        const {
-            title,
-            movieId,
-            isChecked,
-            isDisabled,
-            description,
-        } = this.props.movie;
+        const { isDisabled, movie } = this.props;
+        const { title, movieId, isChecked, description } = movie;
 
         return (
             <div className="form-group form-check">

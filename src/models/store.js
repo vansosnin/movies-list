@@ -11,7 +11,7 @@ const Store = types
         hideChecked: types.boolean,
     })
     .views((self) => ({
-        isLoggedIn() {
+        get isLoggedIn() {
             return self.currentUser.isLoggedIn;
         },
         get totalCount() {
@@ -27,7 +27,7 @@ const Store = types
             const moviesRef = yield movieModel.getList();
             let movies = Object.values(moviesRef.val());
 
-            if (self.currentUser) {
+            if (self.isLoggedIn) {
                 const checkedMoviesModel = new CheckedMovie();
                 const checkedMoviesRef = yield checkedMoviesModel.getCheckedMovies(
                     self.currentUser.uid

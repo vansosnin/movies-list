@@ -79,9 +79,9 @@ MoviesList.propTypes = {
     movies: PropTypes.array,
     hideChecked: PropTypes.bool,
     toggleHideChecked: PropTypes.func,
-    isLoggedIn: PropTypes.func,
-    totalCount: PropTypes.func,
-    watchedCount: PropTypes.func,
+    isLoggedIn: PropTypes.bool,
+    totalCount: PropTypes.number,
+    watchedCount: PropTypes.number,
 };
 
 export default observer(MoviesList);
