@@ -17,6 +17,8 @@ class App extends Component {
                     hideChecked={store.hideChecked}
                     toggleHideChecked={store.toggleHideChecked}
                     isLoggedIn={store.isLoggedIn}
+                    totalCount={store.totalCount}
+                    watchedCount={store.watchedCount}
                 />
             </Fragment>
         );

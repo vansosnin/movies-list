@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -10,7 +10,13 @@ class MoviesList extends Component {
     };
 
     render() {
-        const { movies, hideChecked, isLoggedIn } = this.props;
+        const {
+            movies,
+            hideChecked,
+            isLoggedIn,
+            totalCount,
+            watchedCount,
+        } = this.props;
 
         if (!movies || !movies.length) {
             return null;
@@ -19,32 +25,37 @@ class MoviesList extends Component {
         return (
             <main className="container py-2">
                 {isLoggedIn && (
-                    <div className="btn-group">
-                        <button
-                            type="button"
-                            className={cx('btn', {
-                                active: hideChecked,
-                                'btn-success': hideChecked,
-                                'btn-secondary': !hideChecked,
-                            })}
-                            name="HideChecked"
-                            onClick={this._resolveHideChecked}
-                        >
-                            Спрятать просмотренные
-                        </button>
-                        <button
-                            type="button"
-                            className={cx('btn', {
-                                active: !hideChecked,
-                                'btn-success': !hideChecked,
-                                'btn-secondary': hideChecked,
-                            })}
-                            name="ShowChecked"
-                            onClick={this._resolveHideChecked}
-                        >
-                            Не прятать просмотренные
-                        </button>
-                    </div>
+                    <Fragment>
+                        <div className="btn-group">
+                            <button
+                                type="button"
+                                className={cx('btn', {
+                                    active: hideChecked,
+                                    'btn-success': hideChecked,
+                                    'btn-secondary': !hideChecked,
+                                })}
+                                name="HideChecked"
+                                onClick={this._resolveHideChecked}
+                            >
+                                Спрятать просмотренные
+                            </button>
+                            <button
+                                type="button"
+                                className={cx('btn', {
+                                    active: !hideChecked,
+                                    'btn-success': !hideChecked,
+                                    'btn-secondary': hideChecked,
+                                })}
+                                name="ShowChecked"
+                                onClick={this._resolveHideChecked}
+                            >
+                                Не прятать просмотренные
+                            </button>
+                        </div>
+                        <span className="badge badge-secondary ml-2">
+                            {watchedCount}/{totalCount}
+                        </span>
+                    </Fragment>
                 )}
 
                 <div className="py-2">
@@ -69,6 +80,8 @@ MoviesList.propTypes = {
     hideChecked: PropTypes.bool,
     toggleHideChecked: PropTypes.func,
     isLoggedIn: PropTypes.func,
+    totalCount: PropTypes.func,
+    watchedCount: PropTypes.func,
 };
 
 export default observer(MoviesList);

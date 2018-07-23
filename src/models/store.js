@@ -14,6 +14,12 @@ const Store = types
         isLoggedIn() {
             return self.currentUser.isLoggedIn;
         },
+        get totalCount() {
+            return self.movies.length;
+        },
+        get watchedCount() {
+            return self.movies.filter((movie) => movie.isChecked).length;
+        },
     }))
     .actions((self) => ({
         fetchMoviesList: flow(function*() {
