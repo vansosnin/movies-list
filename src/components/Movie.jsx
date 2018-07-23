@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import ReactMarkdown from 'react-markdown';
 
 class Movie extends PureComponent {
     _handleChange = (evt) => {
@@ -11,10 +12,10 @@ class Movie extends PureComponent {
     render() {
         const {
             title,
-            description,
             movieId,
             isChecked,
             isDisabled,
+            description,
         } = this.props.movie;
 
         return (
@@ -27,10 +28,10 @@ class Movie extends PureComponent {
                     id={movieId}
                     disabled={isDisabled}
                 />
-                <label className="form-check-label" htmlFor={movieId}>
-                    {title}
-                </label>
-                <small className="form-text text-muted">{description}</small>
+                <ReactMarkdown source={title} className="form-check-label" />
+                <small className="form-text text-muted">
+                    <ReactMarkdown source={description} />
+                </small>
             </div>
         );
     }

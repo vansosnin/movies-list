@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Menu from './Menu';
 import MoviesList from './MoviesList';
 import '../shared/bootstrap.min.css';
+import './global.css';
 
 class App extends Component {
     render() {
