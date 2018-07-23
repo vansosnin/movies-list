@@ -1,5 +1,4 @@
 import { Firebase } from './firebase';
-import { Auth } from './auth';
 
 const MOVIES_REF = 'checkedMovies';
 
@@ -7,11 +6,20 @@ export class CheckedMovie {
     constructor() {
         this._firebase = Firebase.instance();
         this._ref = this._firebase.db.ref(MOVIES_REF);
-        this._auth = Auth.instance();
     }
 
     getCheckedMovies(uid) {
         return this._ref.child(uid).once('value');
+    }
+
+    addCheckedMovie(uid, movieId) {
+        this.getCheckedMovies(uid).then((moviesSnapshot) => {
+            const movies = moviesSnapshot.val().checkedMovies;
+
+            moviesSnapshot.ref
+                .child('checkedMovies')
+                .update(movies.concat(movieId));
+        });
     }
 
     createList(uid, movies) {

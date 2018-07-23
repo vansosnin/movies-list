@@ -10,7 +10,7 @@ class MoviesList extends Component {
     };
 
     render() {
-        const { movies, hideChecked } = this.props;
+        const { movies, hideChecked, isLoggedIn } = this.props;
 
         if (!movies || !movies.length) {
             return null;
@@ -18,37 +18,44 @@ class MoviesList extends Component {
 
         return (
             <main className="container py-2">
-                <div className="btn-group">
-                    <button
-                        type="button"
-                        className={cx('btn', {
-                            active: hideChecked,
-                            'btn-success': hideChecked,
-                            'btn-secondary': !hideChecked,
-                        })}
-                        name="HideChecked"
-                        onClick={this._resolveHideChecked}
-                    >
-                        Спрятать просмотренные
-                    </button>
-                    <button
-                        type="button"
-                        className={cx('btn', {
-                            active: !hideChecked,
-                            'btn-success': !hideChecked,
-                            'btn-secondary': hideChecked,
-                        })}
-                        name="ShowChecked"
-                        onClick={this._resolveHideChecked}
-                    >
-                        Не прятать просмотренные
-                    </button>
-                </div>
+                {isLoggedIn && (
+                    <div className="btn-group">
+                        <button
+                            type="button"
+                            className={cx('btn', {
+                                active: hideChecked,
+                                'btn-success': hideChecked,
+                                'btn-secondary': !hideChecked,
+                            })}
+                            name="HideChecked"
+                            onClick={this._resolveHideChecked}
+                        >
+                            Спрятать просмотренные
+                        </button>
+                        <button
+                            type="button"
+                            className={cx('btn', {
+                                active: !hideChecked,
+                                'btn-success': !hideChecked,
+                                'btn-secondary': hideChecked,
+                            })}
+                            name="ShowChecked"
+                            onClick={this._resolveHideChecked}
+                        >
+                            Не прятать просмотренные
+                        </button>
+                    </div>
+                )}
+
                 <div className="py-2">
                     {movies.map(
                         (movie) =>
                             hideChecked && movie.isChecked ? null : (
-                                <Movie key={movie.movieId} {...movie} />
+                                <Movie
+                                    key={movie.movieId}
+                                    movie={movie}
+                                    isDisabled={!isLoggedIn}
+                                />
                             )
                     )}
                 </div>
@@ -61,6 +68,7 @@ MoviesList.propTypes = {
     movies: PropTypes.array,
     hideChecked: PropTypes.bool,
     toggleHideChecked: PropTypes.func,
+    isLoggedIn: PropTypes.func,
 };
 
 export default observer(MoviesList);

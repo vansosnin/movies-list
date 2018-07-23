@@ -15,6 +15,7 @@ class App extends Component {
                     movies={store.movies}
                     hideChecked={store.hideChecked}
                     toggleHideChecked={store.toggleHideChecked}
+                    isLoggedIn={store.isLoggedIn}
                 />
             </Fragment>
         );

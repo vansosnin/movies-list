@@ -10,6 +10,11 @@ const Store = types
         movies: types.array(Movie),
         hideChecked: types.boolean,
     })
+    .views((self) => ({
+        isLoggedIn() {
+            return self.currentUser.isLoggedIn;
+        },
+    }))
     .actions((self) => ({
         fetchMoviesList: flow(function*() {
             const movieModel = new MovieFirebase();
@@ -59,10 +64,19 @@ const getStore = () => {
 const store = getStore();
 
 onAction(store, (call) => {
-    const { name, path } = call;
+    const { name, path, args } = call;
 
     if (path === '/currentUser' && name === 'set') {
         store.fetchMoviesList();
+    }
+
+    if (name === 'setChecked') {
+        const { isChecked, movieId } = args[0];
+        const checkedMoviesModel = new CheckedMovie();
+
+        if (isChecked) {
+            checkedMoviesModel.addCheckedMovie(store.currentUser.uid, movieId);
+        }
     }
 });
 
