@@ -18,7 +18,17 @@ export class CheckedMovie {
 
             moviesSnapshot.ref
                 .child('checkedMovies')
-                .update(movies.concat(movieId));
+                .set(movies.concat(movieId));
+        });
+    }
+
+    removeCheckedMovie(uid, movieId) {
+        this.getCheckedMovies(uid).then((moviesSnapshot) => {
+            const movies = moviesSnapshot.val().checkedMovies;
+
+            moviesSnapshot.ref
+                .child('checkedMovies')
+                .set(movies.filter((movie) => movie !== movieId));
         });
     }
 

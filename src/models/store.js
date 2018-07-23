@@ -76,6 +76,13 @@ onAction(store, (call) => {
 
         if (isChecked) {
             checkedMoviesModel.addCheckedMovie(store.currentUser.uid, movieId);
+        } else {
+            checkedMoviesModel.removeCheckedMovie(
+                store.currentUser.uid,
+                movieId
+            );
+
+            store.fetchMoviesList();
         }
     }
 });
