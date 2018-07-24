@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Movie from './Movie';
+import AddMovieForm from './AddMovieForm';
 
 class MoviesList extends Component {
     _resolveHideChecked = (evt) => {
@@ -16,6 +17,8 @@ class MoviesList extends Component {
             isLoggedIn,
             totalCount,
             watchedCount,
+            isAdmin,
+            addMovie,
         } = this.props;
 
         if (!movies || !movies.length) {
@@ -70,6 +73,8 @@ class MoviesList extends Component {
                             )
                     )}
                 </div>
+
+                {isAdmin && <AddMovieForm addMovie={addMovie} />}
             </main>
         );
     }
@@ -82,6 +87,8 @@ MoviesList.propTypes = {
     isLoggedIn: PropTypes.bool,
     totalCount: PropTypes.number,
     watchedCount: PropTypes.number,
+    isAdmin: PropTypes.bool,
+    addMovie: PropTypes.func,
 };
 
 export default observer(MoviesList);

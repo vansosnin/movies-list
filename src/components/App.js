@@ -16,9 +16,11 @@ class App extends Component {
                     movies={store.movies}
                     hideChecked={store.hideChecked}
                     toggleHideChecked={store.toggleHideChecked}
-                    isLoggedIn={store.isLoggedIn}
+                    isLoggedIn={store.currentUser.isLoggedIn}
                     totalCount={store.totalCount}
                     watchedCount={store.watchedCount}
+                    isAdmin={store.currentUser.isAdmin}
+                    addMovie={store.addMovie}
                 />
             </Fragment>
         );

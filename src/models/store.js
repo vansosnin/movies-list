@@ -25,7 +25,9 @@ const Store = types
         fetchMoviesList: flow(function*() {
             const movieModel = new MovieFirebase();
             const moviesRef = yield movieModel.getList();
-            let movies = Object.values(moviesRef.val());
+            let movies = Object.values(moviesRef.val()).sort(
+                (a, b) => a.createDate - b.createDate
+            );
 
             if (self.isLoggedIn) {
                 const checkedMoviesModel = new CheckedMovie();
@@ -52,6 +54,12 @@ const Store = types
         toggleHideChecked(isHidden) {
             self.hideChecked = isHidden;
         },
+        addMovie: flow(function*(movie) {
+            const movieModel = new MovieFirebase();
+            yield movieModel.save(movie);
+
+            self.fetchMoviesList();
+        }),
     }));
 
 let instance;

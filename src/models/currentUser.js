@@ -10,6 +10,10 @@ export const CurrentUser = types
         get isLoggedIn() {
             return !!self.uid;
         },
+        get isAdmin() {
+            const admins = ['YbGx6NhXgiSOpiznXYMcl85Y2au1'];
+            return admins.includes(self.uid);
+        },
     }))
     .actions((self) => ({
         set(user) {
