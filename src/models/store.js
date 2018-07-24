@@ -11,9 +11,6 @@ const Store = types
         hideChecked: types.boolean,
     })
     .views((self) => ({
-        get isLoggedIn() {
-            return self.currentUser.isLoggedIn;
-        },
         get totalCount() {
             return self.movies.length;
         },
