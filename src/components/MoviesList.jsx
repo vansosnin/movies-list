@@ -26,7 +26,7 @@ class MoviesList extends Component {
         }
 
         return (
-            <main className="container py-2">
+            <main className="container py-4">
                 {isLoggedIn && (
                     <Fragment>
                         <div className="btn-group">
@@ -61,7 +61,7 @@ class MoviesList extends Component {
                     </Fragment>
                 )}
 
-                <div className="py-2">
+                <div className="py-4">
                     {movies.map(
                         (movie) =>
                             hideChecked && movie.isChecked ? null : (

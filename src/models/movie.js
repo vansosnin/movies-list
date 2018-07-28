@@ -11,4 +11,8 @@ export const Movie = types
         setChecked({ isChecked }) {
             self.isChecked = isChecked;
         },
+        update(movie) {
+            const movieModel = new MovieFirebase();
+            movieModel.save(movie);
+        },
     }));
