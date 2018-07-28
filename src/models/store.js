@@ -26,7 +26,7 @@ const Store = types
                 (a, b) => a.createDate - b.createDate
             );
 
-            if (self.isLoggedIn) {
+            if (self.currentUser.isLoggedIn) {
                 const checkedMoviesModel = new CheckedMovie();
                 const checkedMoviesRef = yield checkedMoviesModel.getCheckedMovies(
                     self.currentUser.uid
