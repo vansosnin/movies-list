@@ -31,7 +31,9 @@ const Store = types
                 const checkedMoviesRef = yield checkedMoviesModel.getCheckedMovies(
                     self.currentUser.uid
                 );
-                const checkedMovies = checkedMoviesRef.val().checkedMovies;
+                const checkedMovies = checkedMoviesRef.val()
+                    ? checkedMoviesRef.val().checkedMovies
+                    : [];
 
                 movies = movies.map((movie) => ({
                     ...movie,

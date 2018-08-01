@@ -14,7 +14,9 @@ export class CheckedMovie {
 
     addCheckedMovie(uid, movieId) {
         this.getCheckedMovies(uid).then((moviesSnapshot) => {
-            const movies = moviesSnapshot.val().checkedMovies;
+            const movies = moviesSnapshot.val()
+                ? moviesSnapshot.val().checkedMovies
+                : [];
 
             moviesSnapshot.ref
                 .child('checkedMovies')

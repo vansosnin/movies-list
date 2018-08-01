@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
@@ -171,4 +172,4 @@ Movie.propTypes = {
     isAdmin: PropTypes.bool,
 };
 
-export default Movie;
+export default observer(Movie);
