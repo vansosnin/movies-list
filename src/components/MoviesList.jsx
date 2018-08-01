@@ -69,6 +69,7 @@ class MoviesList extends Component {
                                     key={movie.movieId}
                                     movie={movie}
                                     isDisabled={!isLoggedIn}
+                                    isAdmin={isAdmin}
                                 />
                             )
                     )}

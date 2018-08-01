@@ -64,7 +64,7 @@ class Movie extends PureComponent {
 
     render() {
         const { isEditing, title, description } = this.state;
-        const { isDisabled, movie } = this.props;
+        const { isDisabled, isAdmin, movie } = this.props;
         const { movieId, isChecked } = movie;
 
         if (isEditing) {
@@ -127,24 +127,26 @@ class Movie extends PureComponent {
                 />
                 <div className="form-check-label d-flex">
                     <ReactMarkdown source={title} />
-                    <div className="btn-group ml-2">
-                        <button
-                            type="button"
-                            className="btn btn-light btn-sm"
-                            onClick={this._toggleEditing}
-                            title="Редактировать"
-                        >
-                            ✏️
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-light btn-sm"
-                            onClick={this._delete}
-                            title="Удалить"
-                        >
-                            🗑
-                        </button>
-                    </div>
+                    {isAdmin && (
+                        <div className="btn-group ml-2">
+                            <button
+                                type="button"
+                                className="btn btn-light btn-sm"
+                                onClick={this._toggleEditing}
+                                title="Редактировать"
+                            >
+                                ✏️
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-light btn-sm"
+                                onClick={this._delete}
+                                title="Удалить"
+                            >
+                                🗑
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 <small className="form-text text-muted">
@@ -166,6 +168,7 @@ Movie.propTypes = {
         update: PropTypes.func,
         deleteMovie: PropTypes.func,
     }),
+    isAdmin: PropTypes.bool,
 };
 
 export default Movie;
