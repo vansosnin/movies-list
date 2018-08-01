@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import { Movie as MovieFirebase } from '../firebase/movie';
 
 export const Movie = types
     .model({
@@ -14,5 +15,9 @@ export const Movie = types
         update(movie) {
             const movieModel = new MovieFirebase();
             movieModel.save(movie);
+        },
+        deleteMovie(movieId) {
+            const movieModel = new MovieFirebase();
+            movieModel.remove({ movieId });
         },
     }));

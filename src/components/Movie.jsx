@@ -57,6 +57,11 @@ class Movie extends PureComponent {
         });
     };
 
+    _delete = () => {
+        const { deleteMovie, movieId } = this.props.movie;
+        deleteMovie(movieId);
+    };
+
     render() {
         const { isEditing, title, description } = this.state;
         const { isDisabled, movie } = this.props;
@@ -134,7 +139,7 @@ class Movie extends PureComponent {
                         <button
                             type="button"
                             className="btn btn-light btn-sm"
-                <ReactMarkdown source={title} className="form-check-label" />
+                            onClick={this._delete}
                             title="Удалить"
                         >
                             🗑
@@ -159,6 +164,7 @@ Movie.propTypes = {
         isDisabled: PropTypes.bool,
         setChecked: PropTypes.func,
         update: PropTypes.func,
+        deleteMovie: PropTypes.func,
     }),
 };
 

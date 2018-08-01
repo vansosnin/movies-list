@@ -96,6 +96,12 @@ onAction(store, (call) => {
             store.fetchMoviesList();
         }
     }
+
+    if (name === 'deleteMovie') {
+        const movieId = args[0];
+        store.fetchMoviesList();
+        // todo: remove checked
+    }
 });
 
 store.fetchMoviesList();
