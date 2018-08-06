@@ -100,7 +100,7 @@ onAction(store, (call) => {
     }
 
     if (name === 'deleteMovie') {
-        const movieId = args[0];
+        // const movieId = args[0];
         store.fetchMoviesList();
         // todo: remove checked
     }

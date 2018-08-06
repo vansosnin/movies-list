@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
-class Movie extends PureComponent {
+class Movie extends Component {
     constructor(props) {
         super(props);
 

@@ -61,6 +61,12 @@ class MoviesList extends Component {
                     </Fragment>
                 )}
 
+                {!isLoggedIn && (
+                    <div className="alert alert-primary">
+                        Залогинься, чтобы отчекивать фильмы
+                    </div>
+                )}
+
                 <div className="py-4">
                     {movies.map(
                         (movie) =>
