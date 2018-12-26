@@ -28,6 +28,13 @@ class Movie extends Component {
         });
     };
 
+    _handleKeyDown = (evt) => {
+        // ctrl/cmd + enter
+        if ((evt.ctrlKey || evt.metaKey) && evt.keyCode === 13) {
+            this._handleSave();
+        }
+    };
+
     _toggleEditing = () => {
         this.setState({
             isEditing: !this.state.isEditing,
@@ -81,6 +88,7 @@ class Movie extends Component {
                             value={title}
                             placeholder="Облачный атлас"
                             onChange={this._handleChange}
+                            onKeyDown={this._handleKeyDown}
                         />
                     </div>
                     <div className="form-group">
@@ -92,6 +100,7 @@ class Movie extends Component {
                             value={description}
                             placeholder="Хороший фильм, надо смотреть"
                             onChange={this._handleChange}
+                            onKeyDown={this._handleKeyDown}
                         />
                     </div>
                     <div className="btn-group">

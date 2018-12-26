@@ -13,6 +13,13 @@ class AddMovieForm extends PureComponent {
         });
     };
 
+    _handleKeyDown = (evt) => {
+        // ctrl/cmd + enter
+        if ((evt.ctrlKey || evt.metaKey) && evt.keyCode === 13) {
+            this._handleSave();
+        }
+    };
+
     _handleSave = () => {
         this.props.addMovie(this.state);
         this.setState({
@@ -37,6 +44,7 @@ class AddMovieForm extends PureComponent {
                         value={title}
                         placeholder="Облачный атлас"
                         onChange={this._handleChange}
+                        onKeyDown={this._handleKeyDown}
                     />
                 </div>
                 <div className="form-group">
@@ -48,6 +56,7 @@ class AddMovieForm extends PureComponent {
                         value={description}
                         placeholder="Хороший фильм, надо смотреть"
                         onChange={this._handleChange}
+                        onKeyDown={this._handleKeyDown}
                     />
                 </div>
                 <button
